@@ -39,7 +39,8 @@ a {
     border-right: 1px solid #f0f0f0;
     z-index: 9;
     background: #FFF url("/dist/images/blog-bg.jpg") center/cover no-repeat fixed;
-    background-size: 100% 100%; }
+    background-size: 100% 100%;
+    padding: 0 2rem; }
   .mainWrap .fullPage {
     right: 0; }
   .mainWrap .leftInfo {
@@ -51,8 +52,7 @@ a {
     left: 20%;
     bottom: 0;
     right: 0;
-    z-index: 5;
-    overflow-y: scroll; }
+    z-index: 5; }
   .mainWrap .profile {
     max-width: 38.75rem;
     text-align: center;
@@ -129,6 +129,10 @@ a {
         -webkit-transform: scale(1.2, 1.2);
         -moz-transform: scale(1.2, 1.2);
         -transform: scale(1.2, 1.2); }
+  .mainWrap .leftInfo .profile {
+    margin-top: 7rem; }
+    .mainWrap .leftInfo .profile .navigation ul.upNav li {
+      display: block; }
 
 .divider {
   margin: 10px auto;
@@ -150,19 +154,19 @@ a {
   0%, 100% {
     -webkit-transform: translateX(0); }
   10%, 30%, 50%, 70%, 90% {
-    -webkit-transform: translateX(-4px); }
+    -webkit-transform: translateX(-2px); }
   20%, 40%, 60%, 80% {
-    -webkit-transform: translateX(4px); } }
+    -webkit-transform: translateX(2px); } }
 
 @keyframes shake {
   0%, 100% {
     -webkit-transform: translateX(0);
             transform: translateX(0); }
   10%, 30%, 50%, 70%, 90% {
-    -webkit-transform: translateX(-4px);
-            transform: translateX(-4px); }
+    -webkit-transform: translateX(-2px);
+            transform: translateX(-2px); }
   20%, 40%, 60%, 80% {
-    -webkit-transform: translateX(4px);
-            transform: translateX(4px); } }
+    -webkit-transform: translateX(2px);
+            transform: translateX(2px); } }
 
 /*# sourceMappingURL=base.css.map */

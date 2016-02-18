@@ -19,6 +19,7 @@ a{text-decoration: none;}
     z-index: 9;
     background: #FFF url('/dist/images/blog-bg.jpg') center/cover no-repeat fixed;
     background-size: 100% 100%;
+    padding: 0 2rem;
   }
   .fullPage {
     right: 0;
@@ -37,7 +38,6 @@ a{text-decoration: none;}
     bottom: 0;
     right: 0;
     z-index: 5;
-    overflow-y: scroll;
   }
 
   .profile {
@@ -128,6 +128,19 @@ a{text-decoration: none;}
       }
     }
   }
+
+  .leftInfo {
+    .profile {
+      margin-top: 7rem;
+      .navigation{
+        ul.upNav {
+          li {
+            display: block;
+          }
+        }
+      }
+    }
+  }
 }
 
 .divider{
@@ -171,21 +184,21 @@ a{text-decoration: none;}
 
 @-webkit-keyframes shake {
   0%, 100% {-webkit-transform: translateX(0);}  
-  10%, 30%, 50%, 70%, 90% {-webkit-transform: translateX(-4px);}  
-  20%, 40%, 60%, 80% {-webkit-transform: translateX(4px);}  
+  10%, 30%, 50%, 70%, 90% {-webkit-transform: translateX(-2px);}  
+  20%, 40%, 60%, 80% {-webkit-transform: translateX(2px);}  
 }  
 @-moz-keyframes shake {  
   0%, 100% {-moz-transform: translateX(0);}  
-  10%, 30%, 50%, 70%, 90% {-moz-transform: translateX(-4px);}  
-  20%, 40%, 60%, 80% {-moz-transform: translateX(4px);}  
+  10%, 30%, 50%, 70%, 90% {-moz-transform: translateX(-2px);}  
+  20%, 40%, 60%, 80% {-moz-transform: translateX(2px);}  
 }
 @-o-keyframes shake {  
   0%, 100% {-o-transform: translateX(0);}  
-  10%, 30%, 50%, 70%, 90% {-o-transform: translateX(-4px);}  
-  20%, 40%, 60%, 80% {-o-transform: translateX(4px);}  
+  10%, 30%, 50%, 70%, 90% {-o-transform: translateX(-2px);}  
+  20%, 40%, 60%, 80% {-o-transform: translateX(2px);}  
 }  
 @keyframes shake {  
   0%, 100% {transform: translateX(0);}  
-  10%, 30%, 50%, 70%, 90% {transform: translateX(-4px);}  
-  20%, 40%, 60%, 80% {transform: translateX(4px);}  
+  10%, 30%, 50%, 70%, 90% {transform: translateX(-2px);}  
+  20%, 40%, 60%, 80% {transform: translateX(2px);}  
 }  

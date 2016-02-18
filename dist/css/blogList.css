@@ -1,0 +1,71 @@
+.mainWrap .rightInfo {
+  padding: 2rem 3rem;
+  overflow: auto; }
+  .mainWrap .rightInfo .blogSection {
+    padding: 2rem 0;
+    margin: 0 3.7rem; }
+    .mainWrap .rightInfo .blogSection ul.blogList {
+      padding: 0;
+      margin: 0;
+      list-style-type: none;
+      text-align: left; }
+      .mainWrap .rightInfo .blogSection ul.blogList li {
+        margin: 0 0 .2rem;
+        line-height: 1.6rem; }
+        .mainWrap .rightInfo .blogSection ul.blogList li a {
+          color: #333;
+          text-decoration: none; }
+          .mainWrap .rightInfo .blogSection ul.blogList li a h2 {
+            margin-bottom: 1rem;
+            line-height: 3rem;
+            -webkit-transition: all 350ms;
+            transition: all 350ms; }
+          .mainWrap .rightInfo .blogSection ul.blogList li a p {
+            font-size: 16px;
+            margin-bottom: 1rem;
+            font-size: .9em;
+            color: #999;
+            line-height: 1.7rem;
+            text-indent: 2rem; }
+        .mainWrap .rightInfo .blogSection ul.blogList li .meta {
+          margin: .7em 0;
+          font-size: .85rem;
+          color: #ccc;
+          font-size: 14px; }
+          .mainWrap .rightInfo .blogSection ul.blogList li .meta span {
+            margin: 0 3px; }
+          .mainWrap .rightInfo .blogSection ul.blogList li .meta .tags a {
+            margin-left: 3px;
+            padding: .167rem .25rem;
+            font-size: .55rem;
+            -webkit-transition: all 350ms;
+            transition: all 350ms;
+            text-transform: uppercase;
+            color: #f8f8f8;
+            -webkit-border-radius: .25rem;
+                    border-radius: .25rem;
+            background-color: rgba(234, 97, 83, 0.7); }
+        .mainWrap .rightInfo .blogSection ul.blogList li .divider {
+          width: 30%;
+          margin: 1.7rem 0;
+          border-top: 1px solid #ddd; }
+    .mainWrap .rightInfo .blogSection .pagination {
+      margin: 0 0 2.5rem; }
+      .mainWrap .rightInfo .blogSection .pagination .pageIndex {
+        margin-right: 1rem;
+        margin-left: 1rem;
+        font-size: .8rem;
+        color: #999; }
+    .mainWrap .rightInfo .blogSection footer {
+      display: block;
+      padding: 2em 0 0;
+      font-size: .7em;
+      color: #b3b3b3;
+      border-top: 2px solid #ddd; }
+      .mainWrap .rightInfo .blogSection footer p {
+        margin-bottom: .7em; }
+        .mainWrap .rightInfo .blogSection footer p a {
+          text-decoration: underline;
+          color: #a6a6a6; }
+
+/*# sourceMappingURL=blogList.css.map */
