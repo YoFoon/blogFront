@@ -15,11 +15,6 @@ table {
 ul, ol {
   list-style: none; }
 
-input, select, textarea {
-  outline: none;
-  border: none;
-  background: #FFF; }
-
 textarea {
   resize: none;
   overflow: auto; }

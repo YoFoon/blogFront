@@ -47,6 +47,23 @@ app.config(['$stateProvider', '$urlRouterProvider',
             controller: ''
         }
       }
+    }).
+
+    state('post', {
+      url: '/post',
+      views: {
+        '': {
+            templateUrl: 'view/index/index.html',
+        },
+        'nav@post': {
+            templateUrl: 'view/index/pageShow.html',
+            controller: 'listCtrl'
+        },
+        'con@post': {
+            templateUrl: 'view/post/post.html',
+            controller: ''
+        }
+      }
     });
 
   }]);
