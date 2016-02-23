@@ -84,7 +84,7 @@ app.config(['$stateProvider', '$urlRouterProvider',
         },
         'con@detail': {
             templateUrl: 'view/detail/detail.html',
-            controller: ''
+            controller: 'detailCtrl'
         }
       }
     });

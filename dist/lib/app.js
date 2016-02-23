@@ -84,19 +84,20 @@ app.config(['$stateProvider', '$urlRouterProvider',
         },
         'con@detail': {
             templateUrl: 'view/detail/detail.html',
-            controller: ''
+            controller: 'detailCtrl'
         }
       }
     });
     
   }]);
-app.controller('listCtrl', ['$scope','$timeout','$http','ServiceConfig',
-  function($scope,$timeout,$http,ServiceConfig) {
-    $http.get(ServiceConfig.blogList)
+app.controller('detailCtrl', ['$scope','$timeout','$http','$location','ServiceConfig',
+  function($scope,$timeout,$http,$location,ServiceConfig) {
+    var articleId = $location.path().split('/')[2];
+    $http.post(ServiceConfig.blogList,{_id:articleId})
       .success(function(data) {
         if(data.status) {
-          //console.log(data);
-          $scope.items = data.items;
+          console.log(data.items);
+          $scope.item = data.items[0];
         } else {
           alert("失败");
         }

@@ -19,7 +19,9 @@
         -webkit-transition: all 350ms;
         transition: all 350ms; }
     .rightInfo .detailSection .article .content {
-      color: #666; }
+      color: #666;
+      font-size: 1.5rem;
+      margin-bottom: 3rem; }
       .rightInfo .detailSection .article .content p {
         margin-bottom: 1.3rem;
         line-height: 1.7rem; }
