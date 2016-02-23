@@ -1,0 +1,55 @@
+.rightInfo {
+  padding: 2rem 3rem;
+  overflow: auto;
+  .detailSection {
+    padding: 2rem 0;
+    margin: 0 3.7rem;
+    .article {
+      header {
+        text-align: center;
+        div.top {
+          margin: .7em 0;
+          font-size: .85rem;
+          color: #ccc;
+          span {
+            display: inline-block;
+            margin: 0 2px;
+          }
+        }
+        .title{
+          color: #333;
+          margin: 3rem 0 2.5rem;
+          -webkit-transition: all 350ms;
+          transition: all 350ms;
+        }
+      }
+      .content {
+        color: #666;
+        p {
+          margin-bottom: 1.3rem;
+          line-height: 1.7rem;
+        }
+        pre {
+          width: 95%;
+          padding: 1rem 2.5%;
+          margin-bottom: 1.3rem;
+          font-size: .9rem;
+          font-weight: 300;
+          line-height: 1.3rem;
+          border: 1px solid #d9d9d9;
+          border-radius: 3px;
+          code {
+            color: #333;
+            font-size: .85rem;
+            padding: 2px 4px;
+            font-size: 90%;
+            color: #c7254e;
+            background-color: #f9f2f4;
+            white-space: nowrap;
+            border-radius: 4px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,21 +1,24 @@
 <div class="rightInfo">
   <h2>博文发表</h2>
   <hr>
-  <form method="post" action="#">
-    标题：
-    <input type="text" name="title" /><br /><br />
-    标签：
-    <select name="tags" id="tags">
-      <option value="blog">技术博文</option>
+  <div>
+    <span>标题：</span>
+    <input ng-model="title">
+  </div>
+  <br><br>
+  <div>
+    <span>标签：</span>
+    <select ng-model="tags">
+      <option value="blog" selected>技术博文</option>
       <option value="word">工作博文</option>
       <option value="life">生活博文</option>
       <option value="book">书籍推荐</option>
-    </select><br /><br />
-    正文：<br />
-    <div class="cow inputBlog">
-      <textarea name="post" class="col-md-8"></textarea>
-    </div>
-    <br />
-    <input type="submit" value="发表" />
-  </form>  
+    </select>
+  </div>
+  <br><br>
+  <div class="cow inputBlog">
+    <textarea ng-model="post" class="col-md-8"></textarea>
+  </div>
+  <br><br>
+  <button ng-click="submitForm()">发表</button>
 </div>

@@ -1,0 +1,47 @@
+.rightInfo {
+  padding: 2rem 3rem;
+  overflow: auto; }
+  .rightInfo .detailSection {
+    padding: 2rem 0;
+    margin: 0 3.7rem; }
+    .rightInfo .detailSection .article header {
+      text-align: center; }
+      .rightInfo .detailSection .article header div.top {
+        margin: .7em 0;
+        font-size: .85rem;
+        color: #ccc; }
+        .rightInfo .detailSection .article header div.top span {
+          display: inline-block;
+          margin: 0 2px; }
+      .rightInfo .detailSection .article header .title {
+        color: #333;
+        margin: 3rem 0 2.5rem;
+        -webkit-transition: all 350ms;
+        transition: all 350ms; }
+    .rightInfo .detailSection .article .content {
+      color: #666; }
+      .rightInfo .detailSection .article .content p {
+        margin-bottom: 1.3rem;
+        line-height: 1.7rem; }
+      .rightInfo .detailSection .article .content pre {
+        width: 95%;
+        padding: 1rem 2.5%;
+        margin-bottom: 1.3rem;
+        font-size: .9rem;
+        font-weight: 300;
+        line-height: 1.3rem;
+        border: 1px solid #d9d9d9;
+        -webkit-border-radius: 3px;
+                border-radius: 3px; }
+        .rightInfo .detailSection .article .content pre code {
+          color: #333;
+          font-size: .85rem;
+          padding: 2px 4px;
+          font-size: 90%;
+          color: #c7254e;
+          background-color: #f9f2f4;
+          white-space: nowrap;
+          -webkit-border-radius: 4px;
+                  border-radius: 4px; }
+
+/*# sourceMappingURL=detail.css.map */
