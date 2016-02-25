@@ -1,6 +1,5 @@
 app.controller('PageShowCtrl', ['$scope','$timeout',
   function($scope,$timeout) {
-    console.log(window.location.href);
     var urlHash = '#/index';
     $scope.isFullPage = true;
     var timer = $timeout (

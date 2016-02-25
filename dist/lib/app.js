@@ -1,7 +1,7 @@
 var app = angular.module('myApp', ['ui.router','ngResource']);
 
-var SERVICE_URL = 'http://127.0.0.1:8000/';
-
+//var SERVICE_URL = 'http://127.0.0.1:8000/';
+var SERVICE_URL = 'http://blogend.yofoon.com/';
 //初始化配置
 app.run(['$rootScope', '$state', '$stateParams', function($rootScope,$state, $stateParams) {
   $rootScope.$state = $state;
@@ -106,9 +106,22 @@ app.controller('detailCtrl', ['$scope','$timeout','$http','$location','ServiceCo
         alert("error");
       })
   }]);
+app.controller('listCtrl', ['$scope','$timeout','$http','ServiceConfig',
+  function($scope,$timeout,$http,ServiceConfig) {
+    $http.get(ServiceConfig.blogList)
+      .success(function(data) {
+        if(data.status) {
+          $scope.items = data.items;
+        } else {
+          alert("失败");
+        }
+      })
+      .error(function(data) {
+        alert("error");
+      })
+  }]);
 app.controller('PageShowCtrl', ['$scope','$timeout',
   function($scope,$timeout) {
-    console.log(window.location.href);
     var urlHash = '#/index';
     $scope.isFullPage = true;
     var timer = $timeout (
@@ -128,22 +141,6 @@ app.controller('PageShowCtrl', ['$scope','$timeout',
     })
 
   }]);
-app.controller('listCtrl', ['$scope','$timeout','$http','ServiceConfig',
-  function($scope,$timeout,$http,ServiceConfig) {
-    $http.get(ServiceConfig.blogList)
-      .success(function(data) {
-        if(data.status) {
-          //console.log(data);
-          $scope.items = data.items;
-          console.log($scope.items._id);
-        } else {
-          alert("失败");
-        }
-      })
-      .error(function(data) {
-        alert("error");
-      })
-  }]);
 app.controller('postCtrl', ['$scope','$timeout','$http','$resource','ServiceConfig',
   function($scope,$timeout,$http,$resource,ServiceConfig) {
     $scope.submitForm = function() {
@@ -152,7 +149,6 @@ app.controller('postCtrl', ['$scope','$timeout','$http','$resource','ServiceConf
       data.title = $scope.title;
       data.tags = $scope.tags;
       data.post = $scope.post;
-      console.log(data);
       $http.post(ServiceConfig.postBlog, data)
       .success(function(data) {
         if(data.status) {

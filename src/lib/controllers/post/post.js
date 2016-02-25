@@ -6,7 +6,6 @@ app.controller('postCtrl', ['$scope','$timeout','$http','$resource','ServiceConf
       data.title = $scope.title;
       data.tags = $scope.tags;
       data.post = $scope.post;
-      console.log(data);
       $http.post(ServiceConfig.postBlog, data)
       .success(function(data) {
         if(data.status) {

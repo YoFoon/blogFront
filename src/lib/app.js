@@ -1,7 +1,7 @@
 var app = angular.module('myApp', ['ui.router','ngResource']);
 
-var SERVICE_URL = 'http://127.0.0.1:8000/';
-
+//var SERVICE_URL = 'http://127.0.0.1:8000/';
+var SERVICE_URL = 'http://blogend.yofoon.com/';
 //初始化配置
 app.run(['$rootScope', '$state', '$stateParams', function($rootScope,$state, $stateParams) {
   $rootScope.$state = $state;
