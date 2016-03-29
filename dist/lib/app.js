@@ -1,7 +1,7 @@
 var app = angular.module('myApp', ['ui.router','ngResource']);
 
-//var SERVICE_URL = 'http://127.0.0.1:8000/';
-var SERVICE_URL = 'http://blogend.yofoon.com/';
+var SERVICE_URL = 'http://127.0.0.1:8000/';
+//var SERVICE_URL = 'http://blogend.yofoon.com/';
 //初始化配置
 app.run(['$rootScope', '$state', '$stateParams', function($rootScope,$state, $stateParams) {
   $rootScope.$state = $state;
@@ -90,6 +90,9 @@ app.config(['$stateProvider', '$urlRouterProvider',
     });
     
   }]);
+app.service('ueditor',function() {
+	var ue = UE.getEditor('container');
+})
 app.controller('detailCtrl', ['$scope','$timeout','$http','$location','ServiceConfig',
   function($scope,$timeout,$http,$location,ServiceConfig) {
     var articleId = $location.path().split('/')[2];
@@ -98,20 +101,6 @@ app.controller('detailCtrl', ['$scope','$timeout','$http','$location','ServiceCo
         if(data.status) {
           console.log(data.items);
           $scope.item = data.items[0];
-        } else {
-          alert("失败");
-        }
-      })
-      .error(function(data) {
-        alert("error");
-      })
-  }]);
-app.controller('listCtrl', ['$scope','$timeout','$http','ServiceConfig',
-  function($scope,$timeout,$http,ServiceConfig) {
-    $http.get(ServiceConfig.blogList)
-      .success(function(data) {
-        if(data.status) {
-          $scope.items = data.items;
         } else {
           alert("失败");
         }
@@ -141,8 +130,23 @@ app.controller('PageShowCtrl', ['$scope','$timeout',
     })
 
   }]);
-app.controller('postCtrl', ['$scope','$timeout','$http','$resource','ServiceConfig',
-  function($scope,$timeout,$http,$resource,ServiceConfig) {
+app.controller('listCtrl', ['$scope','$timeout','$http','ServiceConfig',
+  function($scope,$timeout,$http,ServiceConfig) {
+    $http.get(ServiceConfig.blogList)
+      .success(function(data) {
+        if(data.status) {
+          $scope.items = data.items;
+        } else {
+          alert("失败");
+        }
+      })
+      .error(function(data) {
+        alert("error");
+      })
+  }]);
+app.controller('postCtrl', ['$scope','$timeout','$http','$resource','ServiceConfig','ueditor',
+  function($scope,$timeout,$http,$resource,ServiceConfig,ueditor) {
+
     $scope.submitForm = function() {
 
       var data = {};

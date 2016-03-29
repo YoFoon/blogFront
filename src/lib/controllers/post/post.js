@@ -1,5 +1,6 @@
-app.controller('postCtrl', ['$scope','$timeout','$http','$resource','ServiceConfig',
-  function($scope,$timeout,$http,$resource,ServiceConfig) {
+app.controller('postCtrl', ['$scope','$timeout','$http','$resource','ServiceConfig','ueditor',
+  function($scope,$timeout,$http,$resource,ServiceConfig,ueditor) {
+
     $scope.submitForm = function() {
 
       var data = {};
