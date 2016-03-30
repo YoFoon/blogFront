@@ -144,6 +144,20 @@ app.controller('PageShowCtrl', ['$scope','$timeout',
     })
 
   }]);
+app.controller('listCtrl', ['$scope','$timeout','$http','ServiceConfig',
+  function($scope,$timeout,$http,ServiceConfig) {
+    $http.get(ServiceConfig.blogList)
+      .success(function(data) {
+        if(data.status) {
+          $scope.items = data.items;
+        } else {
+          alert("失败");
+        }
+      })
+      .error(function(data) {
+        alert("error");
+      })
+  }]);
 app.controller('postCtrl', ['$scope','$timeout','$http','$resource','ServiceConfig','ueditor',
   function($scope,$timeout,$http,$resource,ServiceConfig,ueditor) {
 
@@ -152,7 +166,27 @@ app.controller('postCtrl', ['$scope','$timeout','$http','$resource','ServiceConf
       var data = {};
       data.title = $scope.title;
       data.tags = $scope.tags;
-      data.post = $scope.post;
+      data.post = ueditor.getContents();
+      if(data.title == ''){
+
+        alert("请写标题");
+
+        return false;
+
+      } else if( data.tags == '' ) {
+
+        alert("请选择标签");
+
+        return false;
+
+      } else if( data.tags == '' ) {
+
+        alert( "请输入内容" );
+
+        return false;
+
+      }
+
       $http.post(ServiceConfig.postBlog, data)
       .success(function(data) {
         if(data.status) {
@@ -179,11 +213,13 @@ app.controller('postCtrl', ['$scope','$timeout','$http','$resource','ServiceConf
         processData: false
       }).then(function(data) {
 
-        var img = '<img src="'+ ServiceConfig.serviceUrl + data.url +'">';
+        if( data.url.indexOf('.jpg') || data.url.indexOf('.png') || data.url.indexOf('.gif') || data.url.indexOf('.jpeg') ) {
 
-        ueditor.setContents(img);
+          var img = '<img src="'+ ServiceConfig.serviceUrl + data.url +'">';
 
+          ueditor.setContents(img);
 
+        }
 
       }, function(err) {
 
@@ -191,19 +227,4 @@ app.controller('postCtrl', ['$scope','$timeout','$http','$resource','ServiceConf
 
       })
     }
-  }]);
-
-app.controller('listCtrl', ['$scope','$timeout','$http','ServiceConfig',
-  function($scope,$timeout,$http,ServiceConfig) {
-    $http.get(ServiceConfig.blogList)
-      .success(function(data) {
-        if(data.status) {
-          $scope.items = data.items;
-        } else {
-          alert("失败");
-        }
-      })
-      .error(function(data) {
-        alert("error");
-      })
   }]);
