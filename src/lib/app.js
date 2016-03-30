@@ -11,7 +11,8 @@ app.run(['$rootScope', '$state', '$stateParams', function($rootScope,$state, $st
 //服务器列表
 app.constant('ServiceConfig', {
   postBlog: SERVICE_URL + 'blog/post',
-  blogList: SERVICE_URL + 'blog/list'
+  blogList: SERVICE_URL + 'blog/list',
+  uploadImg: SERVICE_URL + 'blog/upload'
 })
 
 //路由配置

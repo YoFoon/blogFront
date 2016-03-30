@@ -18,5 +18,27 @@ app.controller('postCtrl', ['$scope','$timeout','$http','$resource','ServiceConf
       .error(function(data) {
         alert("error");
       })
+    };
+
+    $scope.uploadImg = function() {
+      var formData = new FormData();
+
+      formData.append('file', $('#imageUpload')[0].files[0]);
+      
+      $.ajax({
+        type: 'post',
+        url: ServiceConfig.uploadImg,
+        data: formData,
+        contentType: false,
+        processData: false
+      }).then(function(data) {
+
+        console.log(data);
+
+      }, function(err) {
+
+        console.log(err);
+
+      })
     }
   }]);
