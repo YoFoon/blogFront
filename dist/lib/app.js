@@ -92,7 +92,11 @@ app.config(['$stateProvider', '$urlRouterProvider',
     });
     
   }]);
-
+app.filter('to_Html', function ($sce) {
+  return function (input) {
+    return $sce.trustAsHtml(input);
+  }
+});
 app.service('ueditor',function() {
 	var ue = UE.getEditor('container');
 

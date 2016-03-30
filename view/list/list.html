@@ -4,9 +4,8 @@
       <li ng-repeat="item in items">
         <a ng-href="#/detail/{{item._id}}">
           <h2>{{item.title}}</h2>
-          <div>
-            {{item.post}}
-          </div>
+          <article ng-bind="item.post|to_Html">
+          </article>
         </a>
         <div class="meta">
           <span class="time">{{item.time.day}}</span>
