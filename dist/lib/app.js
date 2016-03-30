@@ -92,6 +92,7 @@ app.config(['$stateProvider', '$urlRouterProvider',
     });
     
   }]);
+
 app.service('ueditor',function() {
 	var ue = UE.getEditor('container');
 
@@ -226,5 +227,5 @@ app.controller('postCtrl', ['$scope','$timeout','$http','$resource','ServiceConf
         console.log(err);
 
       })
-    }
+    };
   }]);
