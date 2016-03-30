@@ -16,14 +16,16 @@
     </select>
   </div>
   <br><br>
-  <div class="cow inputBlog">
-    <div class="col-md-8">
-      <script id="container" name="content" ng-model="post" type="text/plain" style="height:250px"></script>
-    </div>
+  <div class="col-md-8">
+    <script id="container" name="content" type="text/plain" style="height:300px; overfloww:auto"></script>
+  </div>
+  <div class="upload">
+    <br><br>
+    <a href="javascript:;" class="a-upload">
+      <input type="file" name="image" id="imageUpload">添加图片
+    </a>
+    <button ng-click="uploadImg()">上传</button>
   </div>
   <br><br>
-  <button ng-click="submitForm()">发表</button>
-
-  <input type="file" name="image" id="imageUpload">
-  <button ng-click="uploadImg()">上传</button>
+  <button ng-click="submitForm()" class="submitBtn">发表</button>
 </div>

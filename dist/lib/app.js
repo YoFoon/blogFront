@@ -10,6 +10,7 @@ app.run(['$rootScope', '$state', '$stateParams', function($rootScope,$state, $st
 
 //服务器列表
 app.constant('ServiceConfig', {
+  serviceUrl: SERVICE_URL,
   postBlog: SERVICE_URL + 'blog/post',
   blogList: SERVICE_URL + 'blog/list',
   uploadImg: SERVICE_URL + 'blog/upload'
@@ -93,7 +94,19 @@ app.config(['$stateProvider', '$urlRouterProvider',
   }]);
 app.service('ueditor',function() {
 	var ue = UE.getEditor('container');
-})
+
+	this.getContents = function() {
+		var content = ue.getContent();
+		return content;
+	}
+
+	this.setContents = function(value) {
+
+		ue.execCommand('insertHtml', value)
+
+	}
+
+});
 app.controller('detailCtrl', ['$scope','$timeout','$http','$location','ServiceConfig',
   function($scope,$timeout,$http,$location,ServiceConfig) {
     var articleId = $location.path().split('/')[2];
@@ -131,20 +144,6 @@ app.controller('PageShowCtrl', ['$scope','$timeout',
     })
 
   }]);
-app.controller('listCtrl', ['$scope','$timeout','$http','ServiceConfig',
-  function($scope,$timeout,$http,ServiceConfig) {
-    $http.get(ServiceConfig.blogList)
-      .success(function(data) {
-        if(data.status) {
-          $scope.items = data.items;
-        } else {
-          alert("失败");
-        }
-      })
-      .error(function(data) {
-        alert("error");
-      })
-  }]);
 app.controller('postCtrl', ['$scope','$timeout','$http','$resource','ServiceConfig','ueditor',
   function($scope,$timeout,$http,$resource,ServiceConfig,ueditor) {
 
@@ -171,7 +170,7 @@ app.controller('postCtrl', ['$scope','$timeout','$http','$resource','ServiceConf
       var formData = new FormData();
 
       formData.append('file', $('#imageUpload')[0].files[0]);
-      
+
       $.ajax({
         type: 'post',
         url: ServiceConfig.uploadImg,
@@ -180,7 +179,11 @@ app.controller('postCtrl', ['$scope','$timeout','$http','$resource','ServiceConf
         processData: false
       }).then(function(data) {
 
-        console.log(data);
+        var img = '<img src="'+ ServiceConfig.serviceUrl + data.url +'">';
+
+        ueditor.setContents(img);
+
+
 
       }, function(err) {
 
@@ -188,4 +191,19 @@ app.controller('postCtrl', ['$scope','$timeout','$http','$resource','ServiceConf
 
       })
     }
+  }]);
+
+app.controller('listCtrl', ['$scope','$timeout','$http','ServiceConfig',
+  function($scope,$timeout,$http,ServiceConfig) {
+    $http.get(ServiceConfig.blogList)
+      .success(function(data) {
+        if(data.status) {
+          $scope.items = data.items;
+        } else {
+          alert("失败");
+        }
+      })
+      .error(function(data) {
+        alert("error");
+      })
   }]);

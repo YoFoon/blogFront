@@ -10,6 +10,7 @@ app.run(['$rootScope', '$state', '$stateParams', function($rootScope,$state, $st
 
 //服务器列表
 app.constant('ServiceConfig', {
+  serviceUrl: SERVICE_URL,
   postBlog: SERVICE_URL + 'blog/post',
   blogList: SERVICE_URL + 'blog/list',
   uploadImg: SERVICE_URL + 'blog/upload'

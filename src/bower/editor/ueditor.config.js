@@ -36,10 +36,10 @@
         , toolbars: [[
             'source', '|',
             'bold', 'italic', 'underline',  'forecolor', 'backcolor',  '|',
-            'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+            'fontfamily', 'fontsize', '|',
             'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 
             'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
-            'simpleupload', 'insertimage', 'insertvideo', 'music', 'map', 'gmap', 'insertcode', '|',
+            'map', 'gmap', 'insertcode', '|',
             'inserttable', 'mergecells', 'mergeright', 'mergedown'
         ]]
         //当鼠标放在工具栏上时显示的tooltip提示,留空支持自动多语言配置，否则以配置值为准

@@ -24,7 +24,7 @@ app.controller('postCtrl', ['$scope','$timeout','$http','$resource','ServiceConf
       var formData = new FormData();
 
       formData.append('file', $('#imageUpload')[0].files[0]);
-      
+
       $.ajax({
         type: 'post',
         url: ServiceConfig.uploadImg,
@@ -33,7 +33,11 @@ app.controller('postCtrl', ['$scope','$timeout','$http','$resource','ServiceConf
         processData: false
       }).then(function(data) {
 
-        console.log(data);
+        var img = '<img src="'+ ServiceConfig.serviceUrl + data.url +'">';
+
+        ueditor.setContents(img);
+
+
 
       }, function(err) {
 
