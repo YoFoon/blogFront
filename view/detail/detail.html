@@ -9,9 +9,7 @@
         </div>
         <h1 class="title">{{item.title}}</h1>
       </header>
-      <div class="content">
-        {{item.post}}
-      </div>
+      <article class="content" ng-bind-html="item.post|to_Html"></article>
     </article>
     <footer>
       <p class="copyright">
