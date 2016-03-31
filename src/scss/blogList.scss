@@ -61,6 +61,11 @@
       }
       .pagination {
         margin: 0 0 2.5rem;
+        .pager {
+          a {
+            color: #999;
+          }
+        }
         .pageIndex {
           margin-right: 1rem;
           margin-left: 1rem;

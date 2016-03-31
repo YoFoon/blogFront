@@ -1,28 +1,61 @@
 app.controller('tagCtrl', ['$scope','$timeout','$http','$location','ServiceConfig',
   function($scope,$timeout,$http,$location,ServiceConfig) {
 
-    var tagType = $location.path().split('/')[2];
+    $scope.totalPage = 1;
+    $scope.curPage = 1;
 
-    var getUrl = ServiceConfig.blogList + '/' + tagType;
+    getList();
+
+
+    $scope.pagePre = function() {
+
+      if( $scope.curPage == 1 ) {
+        return false;
+      }
+
+      $scope.curPage--;
+
+      getList();
+
+    }
     
-    $http.get(getUrl)
+    $scope.pageNext = function() {
 
-      .success(function(data) {
+      if( $scope.curPage == $scope.totalPage ) {
+        return false;
+      }
 
-        if(data.status) {
+      $scope.curPage++;
 
-          console.log(data.items);
-          $scope.items = data.items;
+      getList();
+    }
 
-        } else {
+    function getList(){
 
-          alert("失败");
+      var tagType = $location.path().split('/')[2];
 
-        }
-      })
-      .error(function(data) {
+      var getUrl = ServiceConfig.blogList + '/' + tagType;
+      
+      $http.get(getUrl)
 
-        alert("error");
+        .success(function(data) {
 
-      })
+          if(data.status) {
+
+            console.log(data.items);
+            $scope.items = data.items;
+
+          } else {
+
+            alert("失败");
+
+          }
+        })
+        .error(function(data) {
+
+          alert("error");
+
+        });
+    }
+
   }]);

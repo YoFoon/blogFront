@@ -51,6 +51,8 @@
           border-top: 1px solid #ddd; }
     .mainWrap .rightInfo .blogSection .pagination {
       margin: 0 0 2.5rem; }
+      .mainWrap .rightInfo .blogSection .pagination .pager a {
+        color: #999; }
       .mainWrap .rightInfo .blogSection .pagination .pageIndex {
         margin-right: 1rem;
         margin-left: 1rem;

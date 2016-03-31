@@ -178,11 +178,46 @@ app.controller('PageShowCtrl', ['$scope','$timeout',
 app.controller('listCtrl', ['$scope','$timeout','$http','ServiceConfig',
   function($scope,$timeout,$http,ServiceConfig) {
 
-    $http.get(ServiceConfig.blogList)
+    $scope.totalPage = 1;
+    $scope.curPage = 1;
+
+    getList();
+
+
+    $scope.pagePre = function() {
+
+      if( $scope.curPage == 1 ) {
+        return false;
+      }
+
+      $scope.curPage--;
+
+      getList();
+
+    }
+    
+    $scope.pageNext = function() {
+
+      if( $scope.curPage == $scope.totalPage ) {
+        return false;
+      }
+
+      $scope.curPage++;
+
+      getList();
+    }
+
+    function getList(){
+
+      var getUrl = ServiceConfig.blogList + '/' + $scope.curPage;
+
+      $http.get(getUrl)
 
       .success(function(data) {
 
         if(data.status) {
+
+          $scope.totalPage = data.total;
 
           $scope.items = data.items;
 
@@ -197,36 +232,70 @@ app.controller('listCtrl', ['$scope','$timeout','$http','ServiceConfig',
 
         alert("error");
 
-      })
-      
+      });
+    }
+
   }]);
 app.controller('tagCtrl', ['$scope','$timeout','$http','$location','ServiceConfig',
   function($scope,$timeout,$http,$location,ServiceConfig) {
 
-    var tagType = $location.path().split('/')[2];
+    $scope.totalPage = 1;
+    $scope.curPage = 1;
 
-    var getUrl = ServiceConfig.blogList + '/' + tagType;
+    getList();
+
+
+    $scope.pagePre = function() {
+
+      if( $scope.curPage == 1 ) {
+        return false;
+      }
+
+      $scope.curPage--;
+
+      getList();
+
+    }
     
-    $http.get(getUrl)
+    $scope.pageNext = function() {
 
-      .success(function(data) {
+      if( $scope.curPage == $scope.totalPage ) {
+        return false;
+      }
 
-        if(data.status) {
+      $scope.curPage++;
 
-          console.log(data.items);
-          $scope.items = data.items;
+      getList();
+    }
 
-        } else {
+    function getList(){
 
-          alert("失败");
+      var tagType = $location.path().split('/')[2];
 
-        }
-      })
-      .error(function(data) {
+      var getUrl = ServiceConfig.blogList + '/' + tagType;
+      
+      $http.get(getUrl)
 
-        alert("error");
+        .success(function(data) {
 
-      })
+          if(data.status) {
+
+            console.log(data.items);
+            $scope.items = data.items;
+
+          } else {
+
+            alert("失败");
+
+          }
+        })
+        .error(function(data) {
+
+          alert("error");
+
+        });
+    }
+
   }]);
 app.controller('postCtrl', ['$scope','$timeout','$http','$resource','ServiceConfig','ueditor',
   function($scope,$timeout,$http,$resource,ServiceConfig,ueditor) {
