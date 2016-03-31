@@ -164,10 +164,15 @@ app.controller('detailCtrl', ['$scope','$timeout','$http','$location','ServiceCo
       data.email = $scope.email;
       data.comment = $scope.comment;
 
-      // if(!data.name || !data.email || !data.comment) {
-      //   alert("请填写完信息");
-      //   return false;
-      // }
+      if(data.name == undefined || data.email == undefined || data.comment == undefined) {
+        alert("请把评论信息填写完整");
+      }
+
+      var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+      if(!reg.test(data.email)){
+        alert("请填写正确邮箱");
+        return false;
+      }
       
       $http.post(ServiceConfig.postComment,data)
 
@@ -347,19 +352,19 @@ app.controller('postCtrl', ['$scope','$timeout','$http','$resource','ServiceConf
       data.title = $scope.title;
       data.tags = $scope.tags;
       data.post = ueditor.getContents();
-      if(data.title == 'undefined'){
+      if(data.title == undefined){
 
         alert("请写标题");
 
         return false;
 
-      } else if( data.tags == 'undefined' ) {
+      } else if( data.tags == undefined ) {
 
         alert("请选择标签");
 
         return false;
 
-      } else if( data.tags == 'undefined' ) {
+      } else if( data.tags == undefined ) {
 
         alert( "请输入内容" );
 

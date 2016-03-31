@@ -32,10 +32,15 @@ app.controller('detailCtrl', ['$scope','$timeout','$http','$location','ServiceCo
       data.email = $scope.email;
       data.comment = $scope.comment;
 
-      // if(!data.name || !data.email || !data.comment) {
-      //   alert("请填写完信息");
-      //   return false;
-      // }
+      if(data.name == undefined || data.email == undefined || data.comment == undefined) {
+        alert("请把评论信息填写完整");
+      }
+
+      var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+      if(!reg.test(data.email)){
+        alert("请填写正确邮箱");
+        return false;
+      }
       
       $http.post(ServiceConfig.postComment,data)
 

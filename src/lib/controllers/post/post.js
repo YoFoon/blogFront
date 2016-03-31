@@ -7,19 +7,19 @@ app.controller('postCtrl', ['$scope','$timeout','$http','$resource','ServiceConf
       data.title = $scope.title;
       data.tags = $scope.tags;
       data.post = ueditor.getContents();
-      if(data.title == 'undefined'){
+      if(data.title == undefined){
 
         alert("请写标题");
 
         return false;
 
-      } else if( data.tags == 'undefined' ) {
+      } else if( data.tags == undefined ) {
 
         alert("请选择标签");
 
         return false;
 
-      } else if( data.tags == 'undefined' ) {
+      } else if( data.tags == undefined ) {
 
         alert( "请输入内容" );
 

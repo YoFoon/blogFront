@@ -28,13 +28,13 @@
         </form>
         <button ng-click="submitCommemt()">提交评论</button>
       </div>
-      <p class="comment-already">已评论：</p>
+      <p class="comment-already">已评论：<span>{{item.comments.length}}条</span></p>
       <ui class="comment-list">
         <li class="comment-list-li" ng-repeat="comment in item.comments">
-          <span>{{$index+1}}楼</span>
-          <span>{{comment.name}}</span>
-          <span>{{comment.email}}</span>
-          <p>{{comment.comment}}</p>
+          <span>第{{$index+1}}楼</span>
+          <span>用户：{{comment.name}}</span>
+          <span>邮箱：{{comment.email}}</span>
+          <p>评论：{{comment.comment}}</p>
         </li>
       </ui>
     </section>

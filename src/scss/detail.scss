@@ -102,6 +102,18 @@
         margin: 10px 0;
         color: #999;
         font-size: 16px;
+        span {
+          margin-left: 3px;
+          padding: .167rem .25rem;
+          font-size: 1.5rem;
+          -webkit-transition: all 350ms;
+          transition: all 350ms;
+          text-transform: uppercase;
+          color: #f8f8f8;
+          -webkit-border-radius: .25rem;
+          border-radius: .25rem;
+          background-color: rgba(234, 97, 83, 0.7);
+        }
       }
 
       .comment-list {
