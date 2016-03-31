@@ -57,6 +57,23 @@ app.config(['$stateProvider', '$urlRouterProvider',
       }
     }).
 
+    state('tag', {
+      url: '/list/:tag',
+      views: {
+        '': {
+            templateUrl: 'view/index/index.html',
+        },
+        'nav@tag': {
+            templateUrl: 'view/index/pageShow.html',
+            controller: 'PageShowCtrl'
+        },
+        'con@tag': {
+            templateUrl: 'view/list/list.html',
+            controller: 'tagCtrl'
+        }
+      }
+    }).
+
     state('post', {
       url: '/post',
       views: {

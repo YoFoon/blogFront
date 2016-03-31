@@ -57,6 +57,23 @@ app.config(['$stateProvider', '$urlRouterProvider',
       }
     }).
 
+    state('tag', {
+      url: '/list/:tag',
+      views: {
+        '': {
+            templateUrl: 'view/index/index.html',
+        },
+        'nav@tag': {
+            templateUrl: 'view/index/pageShow.html',
+            controller: 'PageShowCtrl'
+        },
+        'con@tag': {
+            templateUrl: 'view/list/list.html',
+            controller: 'tagCtrl'
+        }
+      }
+    }).
+
     state('post', {
       url: '/post',
       views: {
@@ -114,18 +131,27 @@ app.service('ueditor',function() {
 });
 app.controller('detailCtrl', ['$scope','$timeout','$http','$location','ServiceConfig',
   function($scope,$timeout,$http,$location,ServiceConfig) {
+
     var articleId = $location.path().split('/')[2];
+
     $http.post(ServiceConfig.blogList,{_id:articleId})
+
       .success(function(data) {
+
         if(data.status) {
-          console.log(data.items);
+
           $scope.item = data.items[0];
+
         } else {
+
           alert("失败");
+
         }
       })
       .error(function(data) {
+
         alert("error");
+
       })
   }]);
 app.controller('PageShowCtrl', ['$scope','$timeout',
@@ -151,16 +177,55 @@ app.controller('PageShowCtrl', ['$scope','$timeout',
   }]);
 app.controller('listCtrl', ['$scope','$timeout','$http','ServiceConfig',
   function($scope,$timeout,$http,ServiceConfig) {
+
     $http.get(ServiceConfig.blogList)
+
       .success(function(data) {
+
         if(data.status) {
+
           $scope.items = data.items;
+
         } else {
+
           alert("失败");
+
+        }
+      })
+
+      .error(function(data) {
+
+        alert("error");
+
+      })
+      
+  }]);
+app.controller('tagCtrl', ['$scope','$timeout','$http','$location','ServiceConfig',
+  function($scope,$timeout,$http,$location,ServiceConfig) {
+
+    var tagType = $location.path().split('/')[2];
+
+    var getUrl = ServiceConfig.blogList + '/' + tagType;
+    
+    $http.get(getUrl)
+
+      .success(function(data) {
+
+        if(data.status) {
+
+          console.log(data.items);
+          $scope.items = data.items;
+
+        } else {
+
+          alert("失败");
+
         }
       })
       .error(function(data) {
+
         alert("error");
+
       })
   }]);
 app.controller('postCtrl', ['$scope','$timeout','$http','$resource','ServiceConfig','ueditor',
