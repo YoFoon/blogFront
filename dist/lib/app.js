@@ -256,7 +256,7 @@ app.controller('tagCtrl', ['$scope','$timeout','$http','$location','ServiceConfi
       getList();
 
     }
-    
+
     $scope.pageNext = function() {
 
       if( $scope.curPage == $scope.totalPage ) {
@@ -272,7 +272,7 @@ app.controller('tagCtrl', ['$scope','$timeout','$http','$location','ServiceConfi
 
       var tagType = $location.path().split('/')[2];
 
-      var getUrl = ServiceConfig.blogList + '/' + tagType;
+      var getUrl = ServiceConfig.blogList + '/' + tagType + '/' + $scope.curPage;
       
       $http.get(getUrl)
 
@@ -280,7 +280,8 @@ app.controller('tagCtrl', ['$scope','$timeout','$http','$location','ServiceConfi
 
           if(data.status) {
 
-            console.log(data.items);
+            $scope.totalPage = data.total;
+
             $scope.items = data.items;
 
           } else {
