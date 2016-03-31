@@ -40,7 +40,9 @@ app.controller('listCtrl', ['$scope','$timeout','$http','ServiceConfig',
 
         if(data.status) {
 
-          $scope.totalPage = data.total;
+          $scope.totalPage = Math.ceil(data.total / 10);
+
+          $('.rightInfo').scrollTop(0);
 
           $scope.items = data.items;
 

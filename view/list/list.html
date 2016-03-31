@@ -17,8 +17,8 @@
     <div class="pagination">
       <nav>
         <ul class="pager">
-          <li ng-class="( {{curPage}}== 1) ? 'disabled' : ''" ng-click="pagePre()"><a href="javascript:void(0);">前一页</a></li>
-          <li ng-class="( {{totalPage}}== 1) ? 'disabled' : ''" ng-click="pageNext()"><a href="javascript:void(0);">后一页</a></li>
+          <li ng-class="( curPage == 1 ) ? 'disabled' : ''" ng-click="pagePre()"><a href="javascript:void(0);">前一页</a></li>
+          <li ng-class="( curPage == totalPage ) ? 'disabled' : ''" ng-click="pageNext()"><a href="javascript:void(0);">后一页</a></li>
         </ul>
       </nav>
       <span class="pageIndex">Page {{curPage}} of {{totalPage}}</span>
