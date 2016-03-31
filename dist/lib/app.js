@@ -13,7 +13,8 @@ app.constant('ServiceConfig', {
   serviceUrl: SERVICE_URL,
   postBlog: SERVICE_URL + 'blog/post',
   blogList: SERVICE_URL + 'blog/list',
-  uploadImg: SERVICE_URL + 'blog/upload'
+  uploadImg: SERVICE_URL + 'blog/upload',
+  postComment: SERVICE_URL + 'blog/comment'
 })
 
 //路由配置
@@ -153,6 +154,45 @@ app.controller('detailCtrl', ['$scope','$timeout','$http','$location','ServiceCo
         alert("error");
 
       })
+
+    $scope.submitCommemt = function () {
+
+      var data = {};
+
+      data.id = articleId;
+      data.name = $scope.name;
+      data.email = $scope.email;
+      data.comment = $scope.comment;
+
+      // if(!data.name || !data.email || !data.comment) {
+      //   alert("请填写完信息");
+      //   return false;
+      // }
+      
+      $http.post(ServiceConfig.postComment,data)
+
+      .success( function (res) {
+
+        if (res.status) {
+
+          $scope.item.comments.push(data);
+
+        } else {
+
+          alert ("失败");
+
+        }
+
+      })
+      .error (function (err) {
+
+        alert("ERROR");
+
+      });
+
+    }
+
+
   }]);
 app.controller('PageShowCtrl', ['$scope','$timeout',
   function($scope,$timeout) {
@@ -307,19 +347,19 @@ app.controller('postCtrl', ['$scope','$timeout','$http','$resource','ServiceConf
       data.title = $scope.title;
       data.tags = $scope.tags;
       data.post = ueditor.getContents();
-      if(data.title == ''){
+      if(data.title == 'undefined'){
 
         alert("请写标题");
 
         return false;
 
-      } else if( data.tags == '' ) {
+      } else if( data.tags == 'undefined' ) {
 
         alert("请选择标签");
 
         return false;
 
-      } else if( data.tags == '' ) {
+      } else if( data.tags == 'undefined' ) {
 
         alert( "请输入内容" );
 

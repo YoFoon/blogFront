@@ -13,7 +13,8 @@ app.constant('ServiceConfig', {
   serviceUrl: SERVICE_URL,
   postBlog: SERVICE_URL + 'blog/post',
   blogList: SERVICE_URL + 'blog/list',
-  uploadImg: SERVICE_URL + 'blog/upload'
+  uploadImg: SERVICE_URL + 'blog/upload',
+  postComment: SERVICE_URL + 'blog/comment'
 })
 
 //路由配置

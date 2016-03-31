@@ -45,5 +45,55 @@
           white-space: nowrap;
           -webkit-border-radius: 4px;
                   border-radius: 4px; }
+    .rightInfo .detailSection .comment {
+      margin-bottom: 10px; }
+      .rightInfo .detailSection .comment .comment-banner {
+        color: #666;
+        border-bottom: 4px solid #ccc;
+        padding-bottom: 4px;
+        margin-bottom: 10px; }
+      .rightInfo .detailSection .comment .add-comment p {
+        margin: 10px 0;
+        color: #999;
+        font-size: 16px; }
+      .rightInfo .detailSection .comment .add-comment .form-group {
+        margin-right: 10px; }
+      .rightInfo .detailSection .comment .add-comment label {
+        font-size: 14px;
+        font-weight: normal;
+        color: #999; }
+      .rightInfo .detailSection .comment .add-comment input.form-control {
+        padding: 3px 4px;
+        line-height: 18px;
+        height: 26px; }
+      .rightInfo .detailSection .comment .add-comment textarea {
+        width: 100%;
+        margin-top: 10px; }
+      .rightInfo .detailSection .comment .add-comment button {
+        margin-top: 10px;
+        border: none;
+        display: block;
+        padding: 8px 16px;
+        -webkit-border-radius: 4px;
+                border-radius: 4px;
+        background-color: #4ca0b3;
+        color: #FFF;
+        font-size: 14px; }
+      .rightInfo .detailSection .comment .comment-already {
+        margin: 10px 0;
+        color: #999;
+        font-size: 16px; }
+      .rightInfo .detailSection .comment .comment-list {
+        list-style: none; }
+      .rightInfo .detailSection .comment .comment-list-li {
+        padding-top: 10px;
+        border-bottom: 1px solid #ccc; }
+        .rightInfo .detailSection .comment .comment-list-li span {
+          padding: 4px;
+          margin-right: 20px; }
+        .rightInfo .detailSection .comment .comment-list-li p {
+          padding: 6px 0 3px 20px;
+          color: #666;
+          font-size: 14px; }
 
 /*# sourceMappingURL=detail.css.map */

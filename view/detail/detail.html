@@ -11,6 +11,33 @@
       </header>
       <article class="content" ng-bind-html="item.post|to_Html"></article>
     </article>
+    <section class="comment">
+      <h3 class="comment-banner">评论</h3>
+      <div class="add-comment">
+        <p>添加评论：</p>
+        <form class="form-inline">
+          <div class="form-group">
+            <label for="InputName">Name：</label>
+            <input type="text" class="form-control" id="InputName" placeholder="YoFoon" ng-model="name">
+          </div>
+          <div class="form-group">
+            <label for="InputEmail">Email：</label>
+            <input type="text" class="form-control" id="InputEmail" placeholder="yofoon@example.com" ng-model="email">
+          </div>
+          <textarea class="form-control" rows="3" placeholder="添加我的评论" ng-model="comment"></textarea>
+        </form>
+        <button ng-click="submitCommemt()">提交评论</button>
+      </div>
+      <p class="comment-already">已评论：</p>
+      <ui class="comment-list">
+        <li class="comment-list-li" ng-repeat="comment in item.comments">
+          <span>{{$index+1}}楼</span>
+          <span>{{comment.name}}</span>
+          <span>{{comment.email}}</span>
+          <p>{{comment.comment}}</p>
+        </li>
+      </ui>
+    </section>
     <footer>
       <p class="copyright">
         © 2016. All rights reserved. Built with <a href="https://blog.yofoon.com/" target="_blank">YoFoon</a> and <a href="https://blog.yofoon.com/" target="_blank">YoFoon Ma</a> .
