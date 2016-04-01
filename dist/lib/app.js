@@ -143,7 +143,59 @@ app.filter('to_Html', function ($sce) {
     return $sce.trustAsHtml(input);
   }
 });
+app.service('Cookie', function (){
 
+	function setCookie(name,value,days) {
+		var d = new Date();
+		d.setTime(d.getTime() + (days*24*60*60*1000));
+
+		var expires = "expires=" + d.toUTCString();
+		document.cookie = name + "=" + value + "; " + expires;
+	}
+
+	function getCookie(name){
+		var username = name + "=";
+
+		var ca = document.cookie.split(',');
+
+		for ( var i = 0, caLength = ca.length; i< caLength; i++) {
+			var c = ca[i];
+
+			while (c.charAt(0)==' ') c = c.substring(1);
+
+      if (c.indexOf(username) != -1) return c.substring(username.length, c.length);
+		}
+
+		return "";
+	}
+
+	function clearCookie(name) {
+		setCookie(name, "", -1);
+	}
+
+	function checkCookie(name) {
+		var user = getCookie(name);
+
+		if (user != "") {
+			
+			return 1;
+
+		} else {
+
+			return 0;
+
+		}
+	}
+
+	this.setCookie = setCookie;
+
+	this.getCookie = getCookie;
+
+	this.clearCookie = clearCookie;
+
+	this.checkCookie = checkCookie;
+
+})
 app.service('ueditor',function() {
 	var ue = UE.getEditor('container');
 
@@ -447,13 +499,21 @@ app.controller('postCtrl', ['$scope','$timeout','$http','$resource','ServiceConf
     };
   }]);
 
-app.controller('userLogin',['$scope','$timeout','$http','$resource','ServiceConfig',
-	function ($scope,$timeout,$http,$resource,ServiceConfig){
+app.controller('userLogin',['$scope','$timeout','$http','$resource','ServiceConfig','Cookie',
+	function ($scope,$timeout,$http,$resource,ServiceConfig,Cookie){
 		$scope.isReg = false;
 
-		var data = {};
+		if (Cookie.checkCookie("username")) {
+
+			alert("已经登入，不需要再次登入");
+
+			window.location.href = "/#/index";
+
+		}
 
 		$scope.loginSubmit = function() {
+
+			var data = {};
 
 			data.username = $scope.loginUsername;
 			data.password = $scope.loginPassword;
@@ -476,6 +536,16 @@ app.controller('userLogin',['$scope','$timeout','$http','$resource','ServiceConf
 				if(res.status == 1) {
 					alert("登录成功");
 
+					if( $scope.loginRemberMe ) {
+
+						Cookie.setCookie("username", data.username, 30);
+
+					}	else {
+
+						Cookie.setCookie("username", data.username, 1);
+
+					}
+
 					window.location.href = "/#/index";
 				} else {
 
@@ -493,11 +563,26 @@ app.controller('userLogin',['$scope','$timeout','$http','$resource','ServiceConf
 		}
 	}
 ])
-app.controller('userReg',['$scope','$timeout','$http','$resource','ServiceConfig',
-	function ($scope,$timeout,$http,$resource,ServiceConfig){
+app.controller('userReg',['$scope','$timeout','$http','$resource','ServiceConfig','Cookie',
+	function ($scope,$timeout,$http,$resource,ServiceConfig,Cookie){
 		$scope.isReg = true;
 
+		
+
+		if (Cookie.checkCookie("username")) {
+
+			if (confirm("你已经登入,退出后才能再次注册")) {
+
+				Cookie.clearCookie('username');
+
+				location.reload(true);
+
+			}
+
+		}
+
 		$scope.regSubmit = function (){
+
 			var data = {};
 
 			data.username = $scope.regUsername;
@@ -528,6 +613,8 @@ app.controller('userReg',['$scope','$timeout','$http','$resource','ServiceConfig
 
       	if (res.status == 1) {
       		alert("注册成功");
+
+      		Cookie.setCookie("username", data.username, 1);
 
       		window.location.href = "/#/index";
 

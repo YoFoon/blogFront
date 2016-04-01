@@ -1,10 +1,18 @@
-app.controller('userLogin',['$scope','$timeout','$http','$resource','ServiceConfig',
-	function ($scope,$timeout,$http,$resource,ServiceConfig){
+app.controller('userLogin',['$scope','$timeout','$http','$resource','ServiceConfig','Cookie',
+	function ($scope,$timeout,$http,$resource,ServiceConfig,Cookie){
 		$scope.isReg = false;
 
-		var data = {};
+		if (Cookie.checkCookie("username")) {
+
+			alert("已经登入，不需要再次登入");
+
+			window.location.href = "/#/index";
+
+		}
 
 		$scope.loginSubmit = function() {
+
+			var data = {};
 
 			data.username = $scope.loginUsername;
 			data.password = $scope.loginPassword;
@@ -26,6 +34,16 @@ app.controller('userLogin',['$scope','$timeout','$http','$resource','ServiceConf
 
 				if(res.status == 1) {
 					alert("登录成功");
+
+					if( $scope.loginRemberMe ) {
+
+						Cookie.setCookie("username", data.username, 30);
+
+					}	else {
+
+						Cookie.setCookie("username", data.username, 1);
+
+					}
 
 					window.location.href = "/#/index";
 				} else {

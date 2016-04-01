@@ -1,8 +1,23 @@
-app.controller('userReg',['$scope','$timeout','$http','$resource','ServiceConfig',
-	function ($scope,$timeout,$http,$resource,ServiceConfig){
+app.controller('userReg',['$scope','$timeout','$http','$resource','ServiceConfig','Cookie',
+	function ($scope,$timeout,$http,$resource,ServiceConfig,Cookie){
 		$scope.isReg = true;
 
+		
+
+		if (Cookie.checkCookie("username")) {
+
+			if (confirm("你已经登入,退出后才能再次注册")) {
+
+				Cookie.clearCookie('username');
+
+				location.reload(true);
+
+			}
+
+		}
+
 		$scope.regSubmit = function (){
+
 			var data = {};
 
 			data.username = $scope.regUsername;
@@ -33,6 +48,8 @@ app.controller('userReg',['$scope','$timeout','$http','$resource','ServiceConfig
 
       	if (res.status == 1) {
       		alert("注册成功");
+
+      		Cookie.setCookie("username", data.username, 1);
 
       		window.location.href = "/#/index";
 
