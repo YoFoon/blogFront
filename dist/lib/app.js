@@ -14,7 +14,9 @@ app.constant('ServiceConfig', {
   postBlog: SERVICE_URL + 'blog/post',
   blogList: SERVICE_URL + 'blog/list',
   uploadImg: SERVICE_URL + 'blog/upload',
-  postComment: SERVICE_URL + 'blog/comment'
+  postComment: SERVICE_URL + 'blog/comment',
+  regBlog: SERVICE_URL + 'blog/reg',
+  loginBlog: SERVICE_URL + 'blog/login'
 })
 
 //路由配置
@@ -107,7 +109,33 @@ app.config(['$stateProvider', '$urlRouterProvider',
             controller: 'detailCtrl'
         }
       }
-    });
+    }).
+
+    state('reg', {
+      url:'/reg',
+      views: {
+        '': {
+            templateUrl: 'view/index/index.html',
+        },
+        'nav@reg': {
+          templateUrl: 'view/user/index.html',
+          controller: 'userReg'
+        }
+      }
+    }).
+
+    state('login', {
+      url:'/login',
+      views: {
+        '': {
+            templateUrl: 'view/index/index.html',
+        },
+        'nav@login': {
+          templateUrl: 'view/user/index.html',
+          controller: 'userLogin'
+        }
+      }
+    })
     
   }]);
 app.filter('to_Html', function ($sce) {
@@ -115,6 +143,7 @@ app.filter('to_Html', function ($sce) {
     return $sce.trustAsHtml(input);
   }
 });
+
 app.service('ueditor',function() {
 	var ue = UE.getEditor('container');
 
@@ -417,3 +446,103 @@ app.controller('postCtrl', ['$scope','$timeout','$http','$resource','ServiceConf
       })
     };
   }]);
+
+app.controller('userLogin',['$scope','$timeout','$http','$resource','ServiceConfig',
+	function ($scope,$timeout,$http,$resource,ServiceConfig){
+		$scope.isReg = false;
+
+		var data = {};
+
+		$scope.loginSubmit = function() {
+
+			data.username = $scope.loginUsername;
+			data.password = $scope.loginPassword;
+
+			if (data.username == undefined) {
+				alert("请填写用户名");
+
+				return false;
+			}
+
+			if (data.password == undefined) {
+				alert("请填写密码");
+
+				return false;
+			}
+
+			$http.post( ServiceConfig.loginBlog, data )
+			.success( function (res) {
+
+				if(res.status == 1) {
+					alert("登录成功");
+
+					window.location.href = "/#/index";
+				} else {
+
+					alert(res.message);
+
+				}
+
+			})
+			.error( function (res) {
+
+				alert("登录失败");
+
+			});
+			
+		}
+	}
+])
+app.controller('userReg',['$scope','$timeout','$http','$resource','ServiceConfig',
+	function ($scope,$timeout,$http,$resource,ServiceConfig){
+		$scope.isReg = true;
+
+		$scope.regSubmit = function (){
+			var data = {};
+
+			data.username = $scope.regUsername;
+			data.password = $scope.regPassword;
+			data.re_password = $scope.regRepeatPassword;
+			data.email = $scope.regEmail;
+
+			if (data.password != data.re_password) {
+				alert("两次密码不相同");
+
+				return false;
+			}
+
+			if (data.username == undefined || data.password == undefined || data.re_password == undefined || data.email == undefined ) {
+				alert ("请填写完整注册信息");
+
+				return false;
+			}
+
+			var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+      if ( !reg.test(data.email) ) {
+        alert("请填写正确邮箱");
+        return false;
+      }
+
+      $http.post(ServiceConfig.regBlog, data)
+      .success( function (res) {
+
+      	if (res.status == 1) {
+      		alert("注册成功");
+
+      		window.location.href = "/#/index";
+
+      	} else {
+
+      		alert(res.message);
+
+      	}
+
+      })
+      .error ( function (res) {
+
+      	alert("注册失败");
+
+      });
+		}
+	}
+])

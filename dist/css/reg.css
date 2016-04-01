@@ -1,0 +1,55 @@
+@charset "UTF-8";
+.main-wrap {
+  background: #3c3c3c url("/dist/images/reg-bg.jpg") fixed center center no-repeat;
+  background-size: cover;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  font-size: 1.16667rem; }
+  .main-wrap .container .form-style {
+    background-color: rgba(13, 13, 13, 0.25);
+    -webkit-border-radius: 8px;
+            border-radius: 8px;
+    color: #fff;
+    font-weight: 300;
+    max-width: 25rem;
+    padding: 2.5rem;
+    margin: 2.5rem auto 0 auto; }
+    .main-wrap .container .form-style h2 {
+      color: #FFF;
+      margin-bottom: 3.33333rem;
+      text-align: center; }
+    .main-wrap .container .form-style .reg-style .form-group {
+      margin-bottom: 1.66667rem; }
+      .main-wrap .container .form-style .reg-style .form-group .confrol-label {
+        margin-bottom: 0.83333rem;
+        padding-top: 0; }
+      .main-wrap .container .form-style .reg-style .form-group .input-icon-container {
+        position: relative;
+        /* chrome表单自动填充导致input文本框背景变成偏黄色问题解决 */ }
+        .main-wrap .container .form-style .reg-style .form-group .input-icon-container i {
+          color: #bebebe; }
+        .main-wrap .container .form-style .reg-style .form-group .input-icon-container .fa {
+          position: absolute;
+          left: 10px;
+          top: 10px;
+          font-size: 16px; }
+        .main-wrap .container .form-style .reg-style .form-group .input-icon-container input {
+          background-color: rgba(83, 78, 78, 0.35);
+          border: 1px solid rgba(255, 255, 255, 0.27);
+          color: white;
+          padding-left: 30px; }
+        .main-wrap .container .form-style .reg-style .form-group .input-icon-container input:-webkit-autofill {
+          -webkit-box-shadow: 0 0 0px 1000px white inset; }
+      .main-wrap .container .form-style .reg-style .form-group .btn {
+        width: 100%; }
+      .main-wrap .container .form-style .reg-style .form-group .text-center {
+        color: #DBDBDB;
+        line-height: 34px; }
+    .main-wrap .container .form-style .reg-style .form-group:last-child {
+      margin-bottom: 0; }
+
+/*# sourceMappingURL=reg.css.map */

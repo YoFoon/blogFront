@@ -1,0 +1,72 @@
+@function rem($px){
+  @return ($px / 12)+rem;
+}
+
+.main-wrap {
+	background: rgb(60,60,60) url('/dist/images/reg-bg.jpg') fixed center center no-repeat;
+	background-size: cover;
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	overflow: auto;
+	font-size: rem(14);
+
+	.container {
+		.form-style {
+			$h: rem(30);
+			background-color: rgba(13,13,13,0.25);
+	    border-radius: 8px;
+	    color: #fff;
+	    font-weight: 300;
+	    max-width: rem(300);
+	    padding: $h;
+	    margin: $h auto 0 auto;
+			
+	    h2 {
+	    	color: #FFF;
+	    	margin-bottom: rem(40);
+	    	text-align: center;
+	    }
+	    .reg-style{
+	    	.form-group {
+	    		margin-bottom: rem(20);
+	    		.confrol-label {
+	    			margin-bottom: rem(10);
+	    			padding-top: 0;
+	    		}
+	    		.input-icon-container {
+	    			position: relative;
+	    			i {
+	    				 color: rgb(190, 190, 190);
+	    			}
+	    			.fa {
+	    				position: absolute;
+					    left: 10px;
+					    top: 10px;
+					    font-size: 16px;
+	    			}
+	    			input {
+	    				background-color: rgba(83, 78, 78, 0.35);
+					    border: 1px solid rgba(255, 255, 255, 0.27);
+					    color: rgb(255,255,255);
+					    padding-left: 30px;
+	    			}
+	    			input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;} /* chrome表单自动填充导致input文本框背景变成偏黄色问题解决 */
+	    		}
+	    		.btn {
+	    			width: 100%;
+	    		}
+	    		.text-center{
+						color: #DBDBDB;
+						line-height: 34px;
+	    		}
+	    	}
+	    	.form-group:last-child {
+				  margin-bottom: 0;
+				}
+	    }
+		}
+	}
+}

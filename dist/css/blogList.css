@@ -11,7 +11,10 @@
       text-align: left; }
       .mainWrap .rightInfo .blogSection ul.blogList li {
         margin: 0 0 .2rem;
-        line-height: 1.6rem; }
+        line-height: 1.6rem;
+        height: 16.66667rem;
+        overflow: hidden;
+        margin-bottom: 4.16667rem; }
         .mainWrap .rightInfo .blogSection ul.blogList li a {
           color: #333;
           text-decoration: none; }
@@ -69,5 +72,63 @@
         .mainWrap .rightInfo .blogSection footer p a {
           text-decoration: underline;
           color: #a6a6a6; }
+
+.g-indiana .margin-b, .g-indiana .item-wrap li {
+  margin-bottom: 0.91667rem; }
+
+.g-indiana .ui-container {
+  padding-top: 0.91667rem; }
+
+.g-indiana .item-wrap {
+  width: 97.5%;
+  margin: 0 auto; }
+  .g-indiana .item-wrap li {
+    float: left;
+    overflow: hidden;
+    width: 49.6%;
+    background: #fff; }
+  .g-indiana .item-wrap li:nth-child(even) {
+    float: right; }
+  .g-indiana .item-wrap a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: #000; }
+  .g-indiana .item-wrap .price-wrap {
+    height: 5rem;
+    line-height: 5rem;
+    font-size: 11px;
+    text-indent: 1.5rem; }
+    .g-indiana .item-wrap .price-wrap .price {
+      color: #fa4a2c; }
+  .g-indiana .item-wrap h2 {
+    height: 9rem;
+    line-height: 9rem;
+    text-align: center;
+    font-size: 11px; }
+  .g-indiana .item-wrap .progress-wrap {
+    width: 90.3%;
+    margin: 0 auto;
+    background: #ededed;
+    height: 0.66667rem;
+    -webkit-border-radius: 3px;
+            border-radius: 3px;
+    overflow: hidden; }
+    .g-indiana .item-wrap .progress-wrap .progress {
+      height: inherit;
+      width: 0;
+      background: #f7941d; }
+  .g-indiana .item-wrap .need {
+    color: #858585;
+    font-size: 11px;
+    line-height: 1.91667rem;
+    margin-top: 1.16667rem;
+    padding-bottom: 1.33333rem; }
+    .g-indiana .item-wrap .need .f-left {
+      margin-left: 15.685%; }
+    .g-indiana .item-wrap .need .f-right {
+      margin-right: 23.5%; }
+      .g-indiana .item-wrap .need .f-right .now-num {
+        color: #fa4c2d; }
 
 /*# sourceMappingURL=blogList.css.map */

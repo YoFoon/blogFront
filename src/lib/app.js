@@ -14,7 +14,9 @@ app.constant('ServiceConfig', {
   postBlog: SERVICE_URL + 'blog/post',
   blogList: SERVICE_URL + 'blog/list',
   uploadImg: SERVICE_URL + 'blog/upload',
-  postComment: SERVICE_URL + 'blog/comment'
+  postComment: SERVICE_URL + 'blog/comment',
+  regBlog: SERVICE_URL + 'blog/reg',
+  loginBlog: SERVICE_URL + 'blog/login'
 })
 
 //路由配置
@@ -107,6 +109,32 @@ app.config(['$stateProvider', '$urlRouterProvider',
             controller: 'detailCtrl'
         }
       }
-    });
+    }).
+
+    state('reg', {
+      url:'/reg',
+      views: {
+        '': {
+            templateUrl: 'view/index/index.html',
+        },
+        'nav@reg': {
+          templateUrl: 'view/user/index.html',
+          controller: 'userReg'
+        }
+      }
+    }).
+
+    state('login', {
+      url:'/login',
+      views: {
+        '': {
+            templateUrl: 'view/index/index.html',
+        },
+        'nav@login': {
+          templateUrl: 'view/user/index.html',
+          controller: 'userLogin'
+        }
+      }
+    })
     
   }]);

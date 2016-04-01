@@ -1,0 +1,121 @@
+<div class="main-wrap">
+	<div class="container">
+		<div class="col-md-12">
+			<form class="form-horizontal form-style" ng-show="isReg">
+				<div class="row">
+					<div class="col-md-12">
+						<h2>注册页面</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12 reg-style">
+						<div class="form-group">
+							<div class="col-md-12">
+								<label for="reg-username" class="control-label">username</label>
+								<div class="input-icon-container">
+									<i class="fa glyphicon glyphicon-user"></i>
+									<input type="text" class="form-control" id="reg-username" ng-model="regUsername">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-12">
+								<label for="reg-password" class="control-label">password</label>
+								<div class="input-icon-container">
+									<i class="fa glyphicon glyphicon-lock"></i>
+									<input type="password" class="form-control" id="reg-password" ng-model="regPassword">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-12">
+								<label for="reg-password-repeat" class="control-label">re-password</label>
+								<div class="input-icon-container">
+									<i class="fa glyphicon glyphicon-lock"></i>
+									<input type="password" class="form-control" id="reg-password-repeat" ng-model="regRepeatPassword">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-12">
+								<label for="reg-email" class="control-label">email</label>
+								<div class="input-icon-container">
+									<i class="fa glyphicon glyphicon-envelope"></i>
+									<input type="text" class="form-control" id="reg-email" ng-model="regEmail">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-12">
+								<button class="btn btn-warning" ng-click="regSubmit()">注册</button>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-12">
+							 <a ng-href="/#/login">
+									<button class="btn btn-success">登录</button>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+
+			<form class="form-horizontal form-style" ng-show="!isReg">
+				<div class="row">
+					<div class="col-md-12">
+						<h2>登录页面</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12 reg-style">
+						<div class="form-group">
+							<div class="col-md-12">
+								<label for="login-username" class="control-label">username</label>
+								<div class="input-icon-container">
+									<i class="fa glyphicon glyphicon-user"></i>
+									<input type="text" class="form-control" id="login-username" ng-model="loginUsername">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-12">
+								<label for="login-password" class="control-label">password</label>
+								<div class="input-icon-container">
+									<i class="fa glyphicon glyphicon-lock"></i>
+									<input type="password" class="form-control" id="login-password" ng-model="loginPassword">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+		          <div class="col-md-12">
+		            <div class="checkbox">
+		                <label>
+		                  <input type="checkbox" ng-model="loginRemberMe"> Remember me
+		                </label>
+		            </div>
+		          </div>
+		        </div>
+		        <div class="form-group">
+							<div class="col-md-12">
+								<button class="btn btn-success" ng-click="loginSubmit()">登录</button>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-12">
+							  <a ng-href="/#/reg">
+									<button class="btn btn-warning">注册</button>
+								</a>
+							</div>
+						</div>
+						<div class="form-group">
+		          <div class="col-md-12">
+		        		<a href="javascript:void(0)" class="text-center">Cannot login?</a>
+		       	 	</div>
+			    	</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
