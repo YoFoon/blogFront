@@ -12,8 +12,6 @@
       .mainWrap .rightInfo .blogSection ul.blogList li {
         margin: 0 0 .2rem;
         line-height: 1.6rem;
-        height: 16.66667rem;
-        overflow: hidden;
         margin-bottom: 4.16667rem; }
         .mainWrap .rightInfo .blogSection ul.blogList li a {
           color: #333;
@@ -23,6 +21,9 @@
             line-height: 3rem;
             -webkit-transition: all 350ms;
             transition: all 350ms; }
+          .mainWrap .rightInfo .blogSection ul.blogList li a article {
+            height: 16.66667rem;
+            overflow: hidden; }
           .mainWrap .rightInfo .blogSection ul.blogList li a p {
             font-size: 16px;
             margin-bottom: 1rem;

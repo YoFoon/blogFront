@@ -16,8 +16,6 @@
         li {
           margin: 0 0 .2rem;
           line-height: 1.6rem;
-          height: rem(200);
-          overflow: hidden;
           margin-bottom: rem(50);
           a {
             color: #333;
@@ -27,6 +25,10 @@
               line-height: 3rem;
               -webkit-transition: all 350ms;
               transition: all 350ms;
+            }
+            article {
+              height: rem(200);
+              overflow: hidden;
             }
             p {
               font-size:16px;
