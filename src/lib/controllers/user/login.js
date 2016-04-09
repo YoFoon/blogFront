@@ -33,7 +33,7 @@ app.controller('userLogin',['$scope','$timeout','$http','$resource','ServiceConf
 			.success( function (res) {
 
 				if(res.status == 1) {
-					alert("登录成功");
+					//alert("登录成功");
 
 					if( $scope.loginRemberMe ) {
 

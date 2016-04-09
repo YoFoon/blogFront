@@ -1,5 +1,11 @@
-app.controller('detailCtrl', ['$scope','$timeout','$http','$location','ServiceConfig',
-  function($scope,$timeout,$http,$location,ServiceConfig) {
+app.controller('detailCtrl', ['$scope','$timeout','$http','$location','ServiceConfig','Cookie',
+  function($scope,$timeout,$http,$location,ServiceConfig,Cookie) {
+    
+    $scope.isLogin = false;
+
+    if( Cookie.getCookie("username") != "" ) {
+      $scope.isLogin = true;
+    }
 
     var articleId = $location.path().split('/')[2];
 
@@ -21,7 +27,7 @@ app.controller('detailCtrl', ['$scope','$timeout','$http','$location','ServiceCo
 
         alert("error");
 
-      })
+      });
 
     $scope.submitCommemt = function () {
 
@@ -64,6 +70,24 @@ app.controller('detailCtrl', ['$scope','$timeout','$http','$location','ServiceCo
       });
 
     }
+
+    $scope.removeBlog = function(_id) {
+      var data = {};
+      data._id = articleId;
+      console.log(data);
+      $http.post(ServiceConfig.removeBLog, data)
+      .success(function(data) {
+        if(data.status) {
+          alert("删除成功");
+          window.location.href = "/#/list";
+        } else {
+          alert("删除失败");
+        }
+      })
+      .error(function(data) {
+        alert("error");
+      })
+    };
 
 
   }]);

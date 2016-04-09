@@ -39,6 +39,7 @@ app.controller('listCtrl', ['$scope','$timeout','$http','ServiceConfig',
       .success(function(data) {
 
         if(data.status) {
+          console.log(data.items);
 
           $scope.totalPage = Math.ceil(data.total / 10);
 

@@ -7,7 +7,7 @@
           <span class="tags">{{item.tags}}</span>
           <span class="read-times"><span>{{item.read}}</span>times</span>
         </div>
-        <h1 class="title">{{item.title}}</h1>
+        <h1 class="title">{{item.title}}<a ng-show="isLogin" ng-href="/#/edit/{{item._id}}"><i class="fa glyphicon glyphicon-pencil"></i></a> <a ng-show="isLogin" href="javascript:void(0)" ng-click="removeBlog(item._id)"><i ng-show="isLogin" class="fa glyphicon glyphicon-remove"></i></a></h1>
       </header>
       <article class="content" ng-bind-html="item.post|to_Html"></article>
     </article>

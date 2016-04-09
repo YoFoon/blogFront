@@ -16,7 +16,10 @@ app.constant('ServiceConfig', {
   uploadImg: SERVICE_URL + 'blog/upload',
   postComment: SERVICE_URL + 'blog/comment',
   regBlog: SERVICE_URL + 'blog/reg',
-  loginBlog: SERVICE_URL + 'blog/login'
+  loginBlog: SERVICE_URL + 'blog/login',
+  logoutBlog: SERVICE_URL + 'blog/logout',
+  updateBlog: SERVICE_URL + 'blog/update',
+  removeBLog: SERVICE_URL + 'blog/remove'
 })
 
 //路由配置
@@ -135,6 +138,36 @@ app.config(['$stateProvider', '$urlRouterProvider',
           controller: 'userLogin'
         }
       }
+    }).
+
+    state('logout', {
+      url:'/logout',
+      views: {
+        '': {
+            templateUrl: 'view/index/index.html',
+        },
+        'nav@logout': {
+            templateUrl: 'view/index/pageShow.html',
+            controller: 'userLogout'
+        }
+      }
+    }).
+
+    state('edit', {
+      url: '/edit/:id',
+      views: {
+        '': {
+            templateUrl: 'view/index/index.html',
+        },
+        'nav@edit': {
+            templateUrl: 'view/index/pageShow.html',
+            controller: 'PageShowCtrl'
+        },
+        'con@edit': {
+            templateUrl: 'view/post/post.html',
+            controller: 'editCtrl'
+        }
+      }
     })
     
   }]);
@@ -205,14 +238,22 @@ app.service('ueditor',function() {
 	}
 
 	this.setContents = function(value) {
-
-		ue.execCommand('insertHtml', value)
-
+		ue.addListener("ready", function () {
+      // editor准备好之后才可以使用
+      ue.execCommand('insertHtml', value)
+ 
+    });
 	}
 
 });
-app.controller('detailCtrl', ['$scope','$timeout','$http','$location','ServiceConfig',
-  function($scope,$timeout,$http,$location,ServiceConfig) {
+app.controller('detailCtrl', ['$scope','$timeout','$http','$location','ServiceConfig','Cookie',
+  function($scope,$timeout,$http,$location,ServiceConfig,Cookie) {
+    
+    $scope.isLogin = false;
+
+    if( Cookie.getCookie("username") != "" ) {
+      $scope.isLogin = true;
+    }
 
     var articleId = $location.path().split('/')[2];
 
@@ -234,7 +275,7 @@ app.controller('detailCtrl', ['$scope','$timeout','$http','$location','ServiceCo
 
         alert("error");
 
-      })
+      });
 
     $scope.submitCommemt = function () {
 
@@ -278,8 +319,129 @@ app.controller('detailCtrl', ['$scope','$timeout','$http','$location','ServiceCo
 
     }
 
+    $scope.removeBlog = function(_id) {
+      var data = {};
+      data._id = articleId;
+      console.log(data);
+      $http.post(ServiceConfig.removeBLog, data)
+      .success(function(data) {
+        if(data.status) {
+          alert("删除成功");
+          window.location.href = "/#/list";
+        } else {
+          alert("删除失败");
+        }
+      })
+      .error(function(data) {
+        alert("error");
+      })
+    };
+
 
   }]);
+app.controller('editCtrl', ['$scope','$timeout','$http','$resource','$location','ServiceConfig','ueditor',
+  function($scope,$timeout,$http,$resource,$location,ServiceConfig,ueditor) {
+
+    $scope.isLogin = true;
+    var articleId = $location.path().split('/')[2];
+
+    $http.post(ServiceConfig.blogList,{_id:articleId})
+
+    .success(function(res) {
+
+      if(res.status) {
+
+        //$scope.item = res.items[0];
+
+        $scope.title = res.items[0].title;
+        $scope.tags = res.items[0].tags;
+
+        ueditor.setContents(res.items[0].post);
+        
+
+      } else {
+
+        alert("失败");
+
+      }
+    })
+    .error(function(res) {
+
+      alert("error");
+
+    });
+
+
+    $scope.submitForm = function() {
+
+      var data = {};
+      data._id = articleId;
+      data.title = $scope.title;
+      data.tags = $scope.tags;
+      data.post = ueditor.getContents();
+      if(data.title == undefined){
+
+        alert("请写标题");
+
+        return false;
+
+      } else if( data.tags == undefined ) {
+
+        alert("请选择标签");
+
+        return false;
+
+      } else if( data.tags == undefined ) {
+
+        alert( "请输入内容" );
+
+        return false;
+
+      }
+
+      $http.post(ServiceConfig.updateBlog, data)
+      .success(function(data) {
+        if(data.status) {
+          window.location.href = "/#/list";
+        } else {
+          alert("失败");
+        }
+      })
+      .error(function(data) {
+        alert("error");
+      })
+    };
+
+    $scope.uploadImg = function() {
+      var formData = new FormData();
+
+      formData.append('file', $('#imageUpload')[0].files[0]);
+
+      $.ajax({
+        type: 'post',
+        url: ServiceConfig.uploadImg,
+        data: formData,
+        contentType: false,
+        processData: false
+      }).then(function(data) {
+
+        if( data.url.indexOf('.jpg') || data.url.indexOf('.png') || data.url.indexOf('.gif') || data.url.indexOf('.jpeg') ) {
+
+          var img = '<img src="'+ ServiceConfig.serviceUrl + data.url +'">';
+
+          ueditor.setContents(img);
+
+        }
+
+      }, function(err) {
+
+        console.log(err);
+
+      })
+    };
+
+  }]);
+
 app.controller('PageShowCtrl', ['$scope','$timeout',
   function($scope,$timeout) {
     var urlHash = '#/index';
@@ -342,6 +504,7 @@ app.controller('listCtrl', ['$scope','$timeout','$http','ServiceConfig',
       .success(function(data) {
 
         if(data.status) {
+          console.log(data.items);
 
           $scope.totalPage = Math.ceil(data.total / 10);
 
@@ -534,7 +697,7 @@ app.controller('userLogin',['$scope','$timeout','$http','$resource','ServiceConf
 			.success( function (res) {
 
 				if(res.status == 1) {
-					alert("登录成功");
+					//alert("登录成功");
 
 					if( $scope.loginRemberMe ) {
 
@@ -561,6 +724,17 @@ app.controller('userLogin',['$scope','$timeout','$http','$resource','ServiceConf
 			});
 			
 		}
+	}
+])
+app.controller('userLogout',['$scope','$timeout','$resource','Cookie',
+	function ($scope,$timeout,$resource,Cookie){
+
+		Cookie.clearCookie('username');;
+
+		alert("登出成功");
+
+		window.location.href = "/#/index";
+
 	}
 ])
 app.controller('userReg',['$scope','$timeout','$http','$resource','ServiceConfig','Cookie',

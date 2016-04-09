@@ -7,9 +7,11 @@ app.service('ueditor',function() {
 	}
 
 	this.setContents = function(value) {
-
-		ue.execCommand('insertHtml', value)
-
+		ue.addListener("ready", function () {
+      // editor准备好之后才可以使用
+      ue.execCommand('insertHtml', value)
+ 
+    });
 	}
 
 });

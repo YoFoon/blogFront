@@ -16,7 +16,10 @@ app.constant('ServiceConfig', {
   uploadImg: SERVICE_URL + 'blog/upload',
   postComment: SERVICE_URL + 'blog/comment',
   regBlog: SERVICE_URL + 'blog/reg',
-  loginBlog: SERVICE_URL + 'blog/login'
+  loginBlog: SERVICE_URL + 'blog/login',
+  logoutBlog: SERVICE_URL + 'blog/logout',
+  updateBlog: SERVICE_URL + 'blog/update',
+  removeBLog: SERVICE_URL + 'blog/remove'
 })
 
 //路由配置
@@ -133,6 +136,36 @@ app.config(['$stateProvider', '$urlRouterProvider',
         'nav@login': {
           templateUrl: 'view/user/index.html',
           controller: 'userLogin'
+        }
+      }
+    }).
+
+    state('logout', {
+      url:'/logout',
+      views: {
+        '': {
+            templateUrl: 'view/index/index.html',
+        },
+        'nav@logout': {
+            templateUrl: 'view/index/pageShow.html',
+            controller: 'userLogout'
+        }
+      }
+    }).
+
+    state('edit', {
+      url: '/edit/:id',
+      views: {
+        '': {
+            templateUrl: 'view/index/index.html',
+        },
+        'nav@edit': {
+            templateUrl: 'view/index/pageShow.html',
+            controller: 'PageShowCtrl'
+        },
+        'con@edit': {
+            templateUrl: 'view/post/post.html',
+            controller: 'editCtrl'
         }
       }
     })
